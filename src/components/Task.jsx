@@ -17,9 +17,19 @@ const Task = ({ taskDesc }) => {
   const [isDone, setIsDone] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [value, setValue] = useState(taskDesc);
+  const [prevValue, setPrevValue] = useState("");
   const dispatch = useDispatch();
-  const { tasks } = useSelector((state) => state.tasks);
 
+  const handleStartTaskEdit = () => {
+    setIsEdit(true);
+    setPrevValue(value);
+  }
+
+  const handleTaskEditSubmit = () => {
+    dispatch(edit([prevValue, value]));
+    setPrevValue("");
+    setIsEdit(false);
+  }
 
   return (
     <Box
@@ -43,7 +53,7 @@ const Task = ({ taskDesc }) => {
             onChange={(e) => setValue(e.target.value)}
           />
           <Tooltip title="Save">
-            <IconButton onClick={() => setIsEdit((prev) => !prev)}>
+            <IconButton onClick={handleTaskEditSubmit}>
               <CheckCircleOutlineOutlinedIcon />
             </IconButton>
           </Tooltip>
@@ -67,7 +77,7 @@ const Task = ({ taskDesc }) => {
           </Box>
           <Box alignItems="center" display="flex">
             <Tooltip title="Edit">
-              <IconButton onClick={() => setIsEdit((prev) => !prev)}>
+              <IconButton onClick={handleStartTaskEdit}>
                 <EditOutlinedIcon />
               </IconButton>
             </Tooltip>

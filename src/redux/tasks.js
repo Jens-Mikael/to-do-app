@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
-    tasks: ["Walk the dog", "Cook", "Program", "nänä"],
+    tasks: ["Walk the dog", "Cook", "Program", "Poop"],
   },
   reducers: {
     clear: (state) => {
@@ -14,7 +14,9 @@ export const tasksSlice = createSlice({
       state.tasks = newArr;
     },
     edit: (state, action) => {
-
+      const [oldTask, newTask] = action.payload;
+      const i = state.tasks.indexOf(oldTask);
+      state.tasks[i] = newTask;
     },
     addTask: (state, action) => {
       state.tasks = [...state.tasks, action.payload];

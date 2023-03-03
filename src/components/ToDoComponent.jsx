@@ -26,14 +26,14 @@ const ToDoComponent = () => {
   };
   return (
     <Box
-      width="500px"
-      maxWidth="500px"
+      width="600px"
+      maxWidth="600px"
       bgcolor="background.paper"
       borderRadius="1.5rem"
       p="1rem"
     >
       <Box display="flex" justifyContent="center" p="1rem 0 2rem 0">
-        <Typography fontWeight="bold" variant="h4">Jens ToDoApp</Typography>
+        <Typography fontWeight="bold" variant="h4">Jens To-Do-App</Typography>
       </Box>
       <Box display="flex" justifyContent="center">
         <TextField
@@ -64,7 +64,6 @@ const ToDoComponent = () => {
         <>
           <Box mt="2rem">
             {tasks.map((task) => {
-              console.log(task)
               return <Task key={task} taskDesc={task} />;
             })}
           </Box>
